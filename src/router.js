@@ -28,8 +28,9 @@ router.post('/login', (req, res) => {
 
 router.get('/profile', (req, res) => {
     let decoded = ""
+    const { authorization } = req.headers.authorization
     try {
-        decoded = jwt.verify('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImF1dGhndXkiLCJpYXQiOjE2NDQ4NTMxODJ9.zZNb6Wl5mNZ6keaZvte5ptgTjiCCvCiWEr4wQY-Ymno', 'secretkeywow');
+        decoded = jwt.verify(authorization, 'secretkeywow');
     } catch(err) {
         res.json("Mission Failed")
     }
